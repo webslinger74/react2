@@ -1,8 +1,71 @@
 .headerTitle {
-    background:#aeb3c9;
+    background:#e8ece78f;
+    font-size: 5rem;
 }
 
 .NavTitle {
-    margin-right:4rem;
-    text-decoration: none;
+    margin-right:5rem;
+    font-size: 3.5rem;
+    margin-left: 5rem;
+    text-decoration: none !important;
+    color:black;
+    letter-spacing: 5px;
+    text-shadow: 1px 2px rgba(0, 0, 0, 0.158);
+    
+}
+
+.header__header {
+    
+    padding-right: 0px;
+    font-size:30px;
+}
+
+#loginBtn {
+    margin-top:5px;
+    color:black;
+    background-color: rgba(124, 223, 154, 0);
+    margin-right:3rem;
+    font-size:1.5rem;
+    border:solid 2px white;
+}
+
+#loginBtn:hover {
+    background-color: rgb(244, 248, 244);
+    color:#000000;
+}
+#registerBtn {
+    margin-top:5px;
+    color:black;
+    background-color: rgba(124, 223, 154, 0);
+    margin-right:3rem;
+    font-size:1.5rem;
+    border:solid 2px white;
+    
+}
+
+#registerBtn:hover {
+    background-color: rgb(244, 248, 244);
+    color:#000000
+}
+
+.headerGrid {
+    
+    background-image: linear-gradient(
+        135deg,
+        rgb(241, 248, 242) 5%,
+        rgb(255, 255, 255) 95%
+
+) !important;
+padding-top:2rem !important;
+margin-left:10rem !important;
+margin-right:10rem !important;
+padding-bottom:2rem !important;
+border:solid 0.5px whitesmoke;
+}
+.brandheader {
+    text-align: center;
+}
+
+.headerGridCol {
+    text-align:center !important;
 }

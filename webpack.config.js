@@ -5,7 +5,7 @@ const path = require('path');
 
 
 module.exports={
-    entry: './src/app.js',
+    entry: ["babel-polyfill", './src/app.js'],
     output:{
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
@@ -21,6 +21,12 @@ module.exports={
                 'style-loader',
                 'css-loader',
                 'sass-loader'
+            ]
+        },{
+            test: /\.css$/,
+            use:[
+                'style-loader',
+                'css-loader'
             ]
         }
     ]

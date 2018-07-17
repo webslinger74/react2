@@ -1,0 +1,2 @@
+export const CATEGORY_FILTER = "CATEGORY_FILTER";
+
