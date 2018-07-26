@@ -5,6 +5,8 @@ import './styles/styles.scss';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import ReduxToastr from 'react-redux-toastr';
 import Header from  './components/Header';
+import Cart from './components/Cart';
+import Profile from './components/Profile';
 import PageNotFound from './components/PageNotFound';
 import { Provider } from 'react-redux';
 import { configureStore } from './store/configure';
@@ -30,17 +32,10 @@ const Product = (props) => (
     <h1>Product details  {props.ste}</h1>
     </div>
 )
-const Cart = (props) => (       
-    <div>
-    <h1>Shopping Cart  {props.ste}</h1>
-    </div>
-)
 
 const storeState = configureStore();
 console.log(storeState);
 console.log(storeState.getState());
-storeState.dispatch(addProduct('i-pads', '299.99',"electronics"));
-storeState.dispatch(addProduct('mobiles', '399.99'));
 storeState.dispatch(setCategoryFilter("electronics"));
 
 
@@ -67,6 +62,7 @@ class App extends Component {
         <Route path='/products' component={Products}/>
         <Route path='/product/:id' component={Product}/>
         <Route path='/cart' component={Cart}/>
+        <Route path='/profile' component={Profile}/>
         <Route component={PageNotFound}/>
      </Switch>
      </Container>

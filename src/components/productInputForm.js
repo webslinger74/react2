@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Form, Segment, Button, Label} from 'semantic-ui-react';
-import { Field, reduxForm, reset} from 'redux-form';
+import { Field, reduxForm, FieldArray, reset} from 'redux-form';
 import TextInput from '../utils/TextInput';
 import { connect } from 'react-redux';
 import { addProduct } from '../features/products/addProductAction';
+import PhotosPage from './ProductPhoto';
+
 
 const actions = {
     addProduct
@@ -14,10 +16,32 @@ const afterSubmit = (result, dispatch) =>
   dispatch(reset('productInputForm'));
 
 
-const ProductInputForm = ({ addProduct, handleSubmit, error }) => {
+
+
+class ProductInputForm extends Component {
+      constructor(props) {
+        super(props);
+      }
+
+      state = {
+        blob:{}
+      };
+
+  getBlobImage = (blob) => {
+    console.log(blob, "this is the blob passed up to input form!")
+    this.setState({
+      blob
+    });
+    return blob;
+  }
+  
+
+  render(){
+
+
   return (
     <div>
-    <Form size="large" onSubmit={handleSubmit(addProduct)}>
+    <Form size="large" className="rightMargin" onSubmit={this.props.handleSubmit((values) =>{this.props.addProduct(values, this.state.blob)})}>
     <Segment>
       <Field
         name="title"
@@ -37,14 +61,20 @@ const ProductInputForm = ({ addProduct, handleSubmit, error }) => {
       type="text"
       placeholder="product price"
     />
-      {error && <Label>{error}</Label>}
+
+      <PhotosPage blobImage={this.getBlobImage}/>
+  
+      {this.props.error && <Label>{this.props.error}</Label>}
       <Button fluid size="large" color="teal">
         Add Product
       </Button>
     </Segment>
   </Form>
+
+      <div></div>
     </div>
   )
+}
 }
 
 export default connect(null, actions)(reduxForm({form:'productInputForm', onSubmitSuccess: afterSubmit, })(ProductInputForm));

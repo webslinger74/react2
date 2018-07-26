@@ -30,12 +30,14 @@ async (dispatch, getState, {getFirebase, getFirestore}) => {
         console.log(createdUser);
         //update the auth profile with displayname
         await createdUser.updateProfile({
-            displayName: user.displayName
+            displayName: user.displayName,
+            displayPicture:{}
         })
         //create new user as a profile for viewing in firestore as opposed to any auth info
         let newUser = {
             displayName:user.displayName,
-            createdAt:firestore.FieldValue.serverTimestamp()
+            createdAt:firestore.FieldValue.serverTimestamp(),
+            displayPicture:{}
         };
         await firestore.set(`users/${createdUser.uid}`, {...newUser});
         dispatch(modalClose());

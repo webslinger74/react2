@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
 import { withFirebase } from 'react-redux-firebase';
-import { Button, GridColumn } from 'semantic-ui-react';
+import { Button, GridColumn, Divider, Segment } from 'semantic-ui-react';
 import { modalOpen } from '../features/modals/modalActions';
 import { connect } from 'react-redux';
 import SignedInMenu from './signInMenus/signedInMenu';
@@ -20,14 +20,15 @@ const actions = {
 
 const mapState =  (state) => {
    return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile:state.firebase.profile
    }
 }
 
  
 
 
-const Header = ({ modalOpen, auth, signOutUser, firebase }) => (
+const Header = ({ modalOpen, auth, signOutUser, firebase, profile }) => (
     <div>  
     <Grid>
     <Grid.Column width={6} className="brandheader">
@@ -35,21 +36,26 @@ const Header = ({ modalOpen, auth, signOutUser, firebase }) => (
     </Grid.Column>
     <Grid.Column width={10} className="brandheader">
      {auth.isLoaded && !auth.isEmpty ?
-             <SignedInMenu logout={firebase.logout} auth={auth} signOutUser={signOutUser}/> : <SignedOutMenu auth={auth} modalOpen={modalOpen}/>}
+             <SignedInMenu logout={firebase.logout} auth={auth} profile={profile} signOutUser={signOutUser}/> : <SignedOutMenu auth={auth} modalOpen={modalOpen}/>}
       </Grid.Column> 
 
       </Grid>
 
         <Grid className="headerGrid">
-        <Grid.Column width={5} className="headerGridCol">
+        <Grid.Column width={3} className="headerGridCol">
         <NavLink to='/' activeClassName='is-active' exact className='NavTitle'>HOME</NavLink>
         </Grid.Column>
-        <Grid.Column width={6} className="headerGridCol">
+       
+        <Grid.Column width={5} className="headerGridCol">
         <NavLink to='/products' activeClassName='is-active'className='NavTitle'>PRODUCTS</NavLink>
         </Grid.Column>
-        <Grid.Column width={5} className="headerGridCol">
+        <Grid.Column width={3} className="headerGridCol">
         <NavLink to='/cart' activeClassName='is-active' className='NavTitle'>CART</NavLink>
         </Grid.Column>
+        <Grid.Column width={4} className="headerGridCol">
+        <NavLink to='/profile' activeClassName='is-active' className='NavTitle'>PROFILE</NavLink>
+        </Grid.Column>
+       
         </Grid> 
          </div>  
       

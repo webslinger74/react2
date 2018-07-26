@@ -1,6 +1,6 @@
 import { ADD_PRODUCT } from '../constants/productConstants';
 
-const addProduct = (productName, productPrice, productCategory = "hardcore") => {
+const addProduct = (productName, productPrice, productCategory = "shop") => {
     return {
         type: ADD_PRODUCT,
     payload: {

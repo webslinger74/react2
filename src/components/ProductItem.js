@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Image } from 'semantic-ui-react';
+import { Item, Image, Button} from 'semantic-ui-react';
 
 
 
@@ -7,16 +7,16 @@ const ProductItem = ({product}) => {
   return (
     <div>
     <Item>
-    <Item.Image size='tiny' src='/images/wireframe/image.png' />
-
+    <Item.Image size='tiny'/>
     <Item.Content>
-      <Item.Header as='a'>{product.company}</Item.Header>
-      <Item.Meta>{product.price}</Item.Meta>
+      <Item.Header style={{fontSize:'15px', fontWeight:'bold'}}>{product.title}</Item.Header>
+      <Item.Meta>£{product.price}</Item.Meta>
       <Item.Description>
-        <Image src='/images/wireframe/short-paragraph.png' />
+        <Image src={product.downloadpic} style={{Height:'150px', Width:'10rem'}} />
         {product.description}
       </Item.Description>
       <Item.Extra>{product.title}</Item.Extra>
+      <Button color='teal'>Add To Cart</Button>
     </Item.Content>
   </Item>
 

@@ -3,12 +3,13 @@ import {Menu, Image, Dropdown} from 'semantic-ui-react';
 
 
 
-const SignedInMenu = ({signOutUser, auth, logout}) => {
+const SignedInMenu = ({signOutUser, auth, logout, profile}) => {
   return (
   
     <Menu.Item position="right">
-    <Image avatar spaced="right" src="assets/user.png" />
-    <Dropdown pointing="top left" text={auth.email}>
+   { typeof profile.displayPicture === "string" ? <Image avatar style={{marginTop:'10px', minHeight:'40px', minWidth:'40px'}} spaced="right" src={profile.displayPicture} />:
+    <Image avatar spaced="right" src="assets/user.png" />}
+    <Dropdown pointing="top left" text={profile.displayName}>
       <Dropdown.Menu>
         <Dropdown.Item text="Add Product" icon="plus" />
         <Dropdown.Item text="Delete Product" icon="minus" />

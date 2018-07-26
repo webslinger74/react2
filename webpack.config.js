@@ -15,12 +15,28 @@ module.exports={
             loader: 'babel-loader',
             test: /\.js$/,
             exclude: /node_modules/
-        },{
+        },
+        {
+            test: /\.jpg$/,
+            use: [
+                {
+                    loader:'url-loader',
+                    options:{
+                        mimetype: 'image/jpg'
+
+                }
+            }
+            ]
+        },
+        {
             test: /\.scss$/,
             use:[
+                
                 'style-loader',
                 'css-loader',
-                'sass-loader'
+                'resolve-url-loader',
+                'sass-loader?sourceMap'
+                
             ]
         },{
             test: /\.css$/,

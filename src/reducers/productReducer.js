@@ -1,5 +1,5 @@
 import reducerLookUpFunction from './reducerLookUpFunction';
-import { ADD_PRODUCT } from '../constants/productConstants';
+import { ADD_PRODUCT, FETCH_PRODUCTS} from '../constants/productConstants';
 
 let initialState = [];
 
@@ -11,12 +11,15 @@ const addProduct = (state, payload) => {
 }
 
 
-const editProduct = (state, payload) => {
-
-}
+const fetchProducts = (state, payload) => {
+    return [ 
+        payload
+    ]
+      }
 
 export default reducerLookUpFunction(initialState, {
-    [ADD_PRODUCT] : addProduct
+    [ADD_PRODUCT] : addProduct,
+    [FETCH_PRODUCTS]: fetchProducts
 })
 
 
