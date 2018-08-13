@@ -12,9 +12,9 @@ const HomePage = ({ history }) => {
                     src="/assets/logo.png"
                     alt="logo"
                   />
-                  <div className="content">Web Application</div>
+                  <div className="content">Music Review.com</div>
                 </h1>
-                <h2>welcome to your new application</h2>
+                <h2>Review Artists, Product, Gigs and much more!</h2>
                 <div onClick={() => history.push('/products')}   className="ui huge white inverted button">
                   Get Started
                   <i className="right arrow icon" />

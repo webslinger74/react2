@@ -17,10 +17,15 @@ import HomePage from './components/HomePage';
 import ModalManager from './features/modals/ModalManager';
 import { Container } from '../node_modules/semantic-ui-react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Footer from './components/footer';
-
-library.add(faCoffee, faShoppingBag);
+import AdminProds from './components/Admin';
+import Chat from './components/Chat';
+import Music from './components/Music';
+import Gigs from './components/Gigs';
+import ViewOtherProfile from './components/ViewOtherProfile';
+import ProductDetail from './components/ProductDetail';
+library.add(faShoppingBag);
 
 
 
@@ -59,10 +64,15 @@ class App extends Component {
         <Header />
         <Container className="main">
      <Switch>
+        <Route path='/products/:id' component={ProductDetail}/>
         <Route path='/products' component={Products}/>
-        <Route path='/product/:id' component={Product}/>
         <Route path='/cart' component={Cart}/>
+        <Route path='/profile/:id' component={ViewOtherProfile}/>
         <Route path='/profile' component={Profile}/>
+        <Route path='/chat' component={Chat}/>
+        <Route path='/gigs' component={Gigs}/>
+        <Route path='/music' component={Music}/>
+        <Route path='/admin' component={AdminProds}/>
         <Route component={PageNotFound}/>
      </Switch>
      </Container>

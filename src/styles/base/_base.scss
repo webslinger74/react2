@@ -18,11 +18,17 @@ $green: rgb(216, 243, 174);
         rgba(224, 182, 221, 0.582) 100%,
         rgba(209, 183, 207, 0.63) 89%
 ),url('../heart.jpg') !important;
-    height:300vh;
+    height:100%;
     width:100vw;
 }
 
 .rightMargin {
-    margin-right:5px !important;
-    margin-left:-15px !important;
+    margin-right:10px !important;
+    margin-left:-5px !important;
+    margin-bottom:10px !important;
+    opacity:1 !important;
+
+    &:hover {
+        opacity:0.95 !important;
+    }
 }

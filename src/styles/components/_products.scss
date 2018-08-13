@@ -9,8 +9,55 @@
     margin-bottom:3rem;
     padding-bottom:20rem !important;
     border:solid 0.5px whitesmoke;
+    opacity:0.96;
 }
 
 .backgrounds:hover {
     border:solid 0.5px white;
+}
+
+.cssGrid {
+    display:Grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 15px;
+    grid-column: 1 / 2;
+}
+
+.indProdItem {
+    transition-duration: 0.5s;
+    opacity:0.8;
+    margin-top:2rem;
+
+    &:hover {
+        opacity:1;
+    }
+}
+
+.saleGrid {
+    display:grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-column-gap: 10px;
+    grid-column:1 /4;
+}
+
+.mainProdDash {
+    background-image: url('./logo.jpg');
+}
+.itemSegment {
+    opacity:1;
+    z-index:100;
+}
+.proDetails {
+    display:Grid;
+    grid-template-columns: 50% 50%;
+    grid-column:1/2;
+    margin-bottom: 13rem !important;
+    padding-left:15px !important;
+    background-color: white !important;
+}
+.comments {
+    display:Grid;
+    grid-template-columns: 100%;
+    grid-column: 1/1;
+    margin-bottom: 20px;
 }

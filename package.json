@@ -27,6 +27,7 @@
     "file-loader": "^1.1.11",
     "firebase": "4.12.1",
     "firebase-react-paginated": "^1.0.3",
+    "node": "^8.10.0",
     "node-sass": "4.5.3",
     "react": "^16.4.1",
     "react-cropper": "1.0.1",

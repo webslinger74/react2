@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, Item, Segment,Image, Header, Divider, Menu, Button } from 'semantic-ui-react';
+import { Grid, Item, Segment,Image, Header, Divider, Menu } from 'semantic-ui-react';
 import ProfileImgUpdate from '../features/ProfileImprovements/profileImp';
 
 
@@ -9,15 +9,14 @@ const mapState = (state) => ({
     displayName:state.firebase.profile.displayName
 });
 
-const Profile = ({displayPic, displayName}) => (       
+const Gigs = ({displayPic, displayName}) => (       
     <div id="getWork">
     <Grid>
     <Grid.Column width={12}>   
      <Item.Group className="backgrounds">
      <Segment className="rightMargin">
-     <h1> Profile </h1>
+     <h1> Gig Reviews </h1>
      <Divider />
-     <ProfileImgUpdate />
       </Segment>
      </Item.Group>
     </Grid.Column>
@@ -36,14 +35,14 @@ const Profile = ({displayPic, displayName}) => (
 </Grid.Column>
  </Segment>
  <Segment className="rightMargin">
-<h1> Account Summary </h1>
+<h1> Gigs </h1>
 <Divider />
 <Grid.Column width={4} style={{paddingLeft:'0px'}}>
 <Menu vertical >
-  <Header icon="user" attached inverted color="grey" content="Profile" />
-  <Menu.Item>Basics</Menu.Item>
-  <Menu.Item>About Me</Menu.Item>
-  <Menu.Item>My Photos</Menu.Item>
+  <Header icon="user" attached inverted color="grey" content="Gig Reviews" />
+  <Menu.Item>Reviewed</Menu.Item>
+  <Menu.Item>Going to</Menu.Item>
+  <Menu.Item>Favourite</Menu.Item>
 </Menu>
 <Grid.Row />
 <Menu vertical>
@@ -65,4 +64,4 @@ const Profile = ({displayPic, displayName}) => (
     </div>
 );
 
-export default connect(mapState)(Profile);
+export default connect(mapState)(Gigs);

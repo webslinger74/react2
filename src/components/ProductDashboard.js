@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ProductItem from './ProductItem';
 import { Grid, Image, Item, Segment, Divider, Button } from 'semantic-ui-react';
 import { firestoreConnect } from 'react-redux-firebase';
+import { Link } from 'react-router-dom';
 import  ProductInputForm  from './productInputForm';
 import PhotoPage from './ProductPhoto';
 import { addProduct, getProductForDashboard, getPrevProductForDashboard } from '../features/products/addProductAction';
@@ -56,43 +57,50 @@ class Products extends Component {
     render(){
     return  (    
     <Grid>
-       <Grid.Column width={4}>   
+       <Grid.Column width={16} className="mainProdDash">   
         <Item.Group className="backgrounds">
         <h1>Products for Sale</h1>
         <Divider className="rightMargin"/>
+        <div className="saleGrid">
+
+       
            {this.props.products && this.props.products.map((product, index) => (
-               <Segment className="rightMargin" key={index}>
+             <div className="rightMargin" key={index}>
+               
+               <Segment  key={index} className="itemSegment">
+               <Link to={`/products/${product.id}`}>
                  <ProductItem  key={index} product={product}/>
+                </Link>
                  </Segment>
-                 
+                
+             </div>
            ))}
-   
+           </div>
         </Item.Group>
        </Grid.Column>
    
 
-    <Grid.Column width={12}>   
+    <Grid.Column width={16}>   
     <div className="backgrounds">
-    <h1>Add Product</h1>
-           <ProductInputForm />
-           <Button color='teal' onClick={this.getPreviousProducts}>Previous</Button>
-           <Button color='teal' style={{float:'right', marginRight:'30px'}} onClick={this.getNextProducts}>Next</Button>
-            {this.props.filteredProds[0] && this.props.filteredProds[0].map((prod,index) => (
-                <div key={index}>
-                <Segment className="rightMargin">
+           <Button style={{fontSize:'16px', width:'150px'}}color='teal' onClick={this.getPreviousProducts}>Previous</Button>
+           <Button color='teal' style={{fontSize:'16px', width:'150px',float:'right', marginRight:'30px'}} onClick={this.getNextProducts}>Next</Button>
+           <div className="cssGrid">
+           {this.props.filteredProds[0] && this.props.filteredProds[0].map((prod,index) => (
+               
+                <div key={index} className="indProdItem">
+              
                     <h1>{prod.title}</h1>
                     <h1><img style={{maxHeight:'200px', maxWidth:'200px'}} src={prod.downloadpic}/></h1>
                     <h2>£{prod.price}</h2>
                     <h2>{prod.description}</h2>
-                    </Segment>
-                <Divider className="rightMargin"/>
                     </div>
+            
             ))}
-
+            </div>
     </div>
     </Grid.Column>
     </Grid>
 )
     }
 }
-export default connect(mapState, actions)(firestoreConnect([{collection:'products'}])(Products));
+export default connect(mapState, actions)(firestoreConnect([{collection:'products'},{collection:'users'} ])(Products));

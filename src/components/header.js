@@ -32,7 +32,7 @@ const Header = ({ modalOpen, auth, signOutUser, firebase, profile }) => (
     <div>  
     <Grid>
     <Grid.Column width={6} className="brandheader">
-    <h4 className="header__header"> <FontAwesomeIcon icon="shopping-bag" /> React Shop</h4>
+    <h4 className="header__header"> <FontAwesomeIcon icon="shopping-bag" color="yellow"/>Music Review.com</h4>
     </Grid.Column>
     <Grid.Column width={10} className="brandheader">
      {auth.isLoaded && !auth.isEmpty ?
@@ -42,18 +42,30 @@ const Header = ({ modalOpen, auth, signOutUser, firebase, profile }) => (
       </Grid>
 
         <Grid className="headerGrid">
-        <Grid.Column width={3} className="headerGridCol">
+        <Grid.Column width={2} className="headerGridCol">
         <NavLink to='/' activeClassName='is-active' exact className='NavTitle'>HOME</NavLink>
         </Grid.Column>
        
-        <Grid.Column width={5} className="headerGridCol">
+        <Grid.Column width={2} className="headerGridCol">
         <NavLink to='/products' activeClassName='is-active'className='NavTitle'>PRODUCTS</NavLink>
         </Grid.Column>
-        <Grid.Column width={3} className="headerGridCol">
+        <Grid.Column width={2} className="headerGridCol">
         <NavLink to='/cart' activeClassName='is-active' className='NavTitle'>CART</NavLink>
         </Grid.Column>
-        <Grid.Column width={4} className="headerGridCol">
+        <Grid.Column width={2} className="headerGridCol">
         <NavLink to='/profile' activeClassName='is-active' className='NavTitle'>PROFILE</NavLink>
+        </Grid.Column>
+        <Grid.Column width={2} className="headerGridCol">
+        <NavLink to='/music' activeClassName='is-active' className='NavTitle'>MUSIC</NavLink>
+        </Grid.Column>
+        <Grid.Column width={2} className="headerGridCol">
+        <NavLink to='/gigs' activeClassName='is-active' className='NavTitle'>GIG's</NavLink>
+        </Grid.Column>
+        <Grid.Column width={2} className="headerGridCol">
+        <NavLink to='/chat' activeClassName='is-active' className='NavTitle'>CHAT</NavLink>
+        </Grid.Column>
+        <Grid.Column width={2} className="headerGridCol">
+        <NavLink to='/admin' activeClassName='is-active' className='NavTitle'>ADMIN</NavLink>
         </Grid.Column>
        
         </Grid> 

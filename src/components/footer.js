@@ -7,7 +7,7 @@ const Footer = () => {
     <div> 
     <Grid>
          <Grid.Column width={16} className="footerheader">
-             <h4 className="header__header"> React Footer</h4>
+             <h4 className="header__header"> Further Information</h4>
          </Grid.Column>
    </Grid>
 

@@ -57,14 +57,6 @@ export const addProduct = (product, data) => {
 };
 
 
-export const getPhotoFromStorage = () => {
-    return async (dispatch, getState, {getFirebase, getFirestore}) =>{
-        var firebase = getFirebase();
-        var storage = firebase.storage();
-        var picRef = storage.refFromURL('gs://webapplication-26ea2.appspot.com/products/fender amp');
-        console.log(picRef);
-    }
-}
 
 
 
@@ -99,7 +91,7 @@ async (dispatch, getState) => {
     }
 }
 export const getPrevProductForDashboard = (previousTitle) =>
-async (dispatch, getState) => {
+   async (dispatch, getState) => {
     console.log(previousTitle, "is this the prev title???");
     const firestore = firebase.firestore();
     const productsRef = firestore.collection('products');
@@ -167,3 +159,97 @@ async (dispatch, getState) => {
         console.log(error);
     }
 }
+
+export const getProductDetails = (productId) => {
+          console.log(productId, "this is the id");
+   return async (dispatch, getState) => {
+       
+        const firestore = firebase.firestore();
+        try {
+            let indprod = productId;
+            console.log(indprod, "indprod");
+            //hopefully return individual product from collection with ID that was passed
+            let singleProduct = await firestore.collection('products').doc(indprod).get();
+            console.log(singleProduct, "snapshotofSingle");
+            console.log(singleProduct.data());
+            return singleProduct.data();
+} catch(error){
+    console.log(error);
+}
+    }
+}
+
+export const addProductComment = (values, prodId, userId) => {
+     return async (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        
+        var storage = firebase.storage();
+        try {
+        var displayName = getState().firebase.auth.displayName;
+        
+        var storageRef = await storage.ref(`profile/${userId}`);
+        console.log(storageRef, "this is the storage image")
+       var downloadableImg = await storageRef.getDownloadURL();
+       console.log(downloadableImg, "is this the url");
+
+
+
+     await firebase.push(`product_review/${prodId}`, {values:values,
+                                                      userId:userId,
+                                                      downloadableImg:downloadableImg,
+                                                      displayName:displayName});
+        } catch(error){
+            console.log(error);
+        }
+    }    
+     }
+
+    
+export const getPhotoFromStorage = (userId) => {
+    return async (dispatch, getState, {getFirebase, getFirestore}) =>{
+        var firebase = getFirebase();
+        var storage = firebase.storage();
+        try {
+        var storageRef = await storage.ref(`profile/${userId}`);
+        console.log(storageRef, "this is the storage image")
+       var downloadableImg = await storageRef.getDownloadURL();
+       console.log(downloadableImg, "is this the url");
+       return downloadableImg;
+        } catch (error){
+            console.log(error);
+        }
+    
+    }
+}
+
+
+
+export const getProductComments = (productId) => {
+    return async (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        try {
+        let comments = await firebase.database().ref(`product_review/${productId}`);
+            console.log(comments, "this is the comments we want");
+              return comments;
+       
+        
+       }  
+         catch (error){
+            console.log(error);
+        }
+    }
+}
+
+export const removeComment = (prodId, commentId) => {
+    return async (dispatch, getState, {getFirebase}) => {
+        try {
+        const firebase = getFirebase();
+        console.log(prodId, commentId, "have the 2 vals come accross");
+      let delComment =  await firebase.database().ref(`product_review/${prodId}/${commentId}`).remove();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+

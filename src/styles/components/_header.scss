@@ -4,13 +4,15 @@
 }
 
 .NavTitle {
-    margin-right:5rem;
-    font-size: 3.5rem;
-    margin-left: 5rem;
-    text-decoration: none !important;
+    margin-right:2rem;
+    font-size: 1.8rem;
+    margin-left: 2rem;
     color:black;
-    letter-spacing: 5px;
-    text-shadow: 1px 2px rgba(0, 0, 0, 0.158);
+    letter-spacing: 4px;
+
+    &:hover {
+        text-decoration-style: none !important;
+    }
     
 }
 
@@ -18,6 +20,7 @@
     
     padding-right: 0px;
     font-size:30px;
+    color:rgb(205, 238, 87);
 }
 
 #loginBtn {
@@ -50,22 +53,28 @@
 
 .headerGrid {
     
-    background-image: linear-gradient(
+    background-image:linear-gradient(
         135deg,
-        rgb(241, 248, 242) 5%,
-        rgb(255, 255, 255) 95%
+        rgba(241, 248, 242, 0.185) 5%,
+        rgba(255, 255, 255, 0.158) 95%
 
-) !important;
+);
 padding-top:2rem !important;
-margin-left:10rem !important;
-margin-right:10rem !important;
 padding-bottom:2rem !important;
 border:solid 0.5px whitesmoke;
+transition:0.5s;
+opacity:0.8;
+   
+
+    &:hover {
+        opacity:1;
+        color:rgba(255, 255, 255, 0.781);
+    }
 }
 .brandheader {
     text-align: center;
 }
 
 .headerGridCol {
-    text-align: start;
+    text-align: center;
 }
