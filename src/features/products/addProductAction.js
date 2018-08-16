@@ -225,9 +225,8 @@ export const getPhotoFromStorage = (userId) => {
 
 
 export const getProductComments = (productId) => {
-    return async (dispatch, getState, {getFirebase, getFirestore}) => {
+    return async (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
-        const firestore = getFirestore();
         try {
         let comments = await firebase.database().ref(`product_review/${productId}`);
             console.log(comments, "this is the comments we want");
@@ -236,6 +235,34 @@ export const getProductComments = (productId) => {
         
        }  
          catch (error){
+            console.log(error);
+        }
+    }
+}
+
+export const calcProductRating = (productId) => {
+    return async (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+        try {
+            let comments = await firebase.database().ref(`product_review/${productId}`);
+            
+
+            comments.on('value', (snapshot)=> {
+                console.log(snapshot.val(), "this is the rating snapshot!");
+                const ratings = Object.values(snapshot.val());
+                console.log(ratings, "is this the array yeah");
+                const indRatings = ratings.map((rating)=>{
+                    return rating.values.rating;
+                });
+                console.log(indRatings, "this is new array of ratings hopefully!");
+                console.log(indRatings.length, "this is the length");
+                
+             return indRatings;
+            });
+
+
+            return commentData
+        } catch (error) {
             console.log(error);
         }
     }

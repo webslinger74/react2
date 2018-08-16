@@ -1,4 +1,6 @@
-export const followOrUnfollow = (usersDisplayName, matchParamsId, followStatus) => async (dispatch, getState, {getFirestore}) =>  {
+import  firebase  from '../../firebase/firebase';
+
+export const follow = (usersDisplayName, matchParamsId) => async (dispatch, getState, {getFirestore}) =>  {
 
             let toFollowUser;
             let currentUser;
@@ -15,7 +17,7 @@ export const followOrUnfollow = (usersDisplayName, matchParamsId, followStatus) 
 
     const firestore = getFirestore();
     const following = {
-      photoURL: toFollowUser[0][1].displayPicture || 'assets/user.png',
+      displayPhoto: toFollowUser[0][1].displayPicture || 'assets/user.png',
       displayName:toFollowUser[0][1].displayName || 'Unknown'
     };
     console.log(currentUser, "this is the cur user in followfunction");
@@ -26,16 +28,67 @@ export const followOrUnfollow = (usersDisplayName, matchParamsId, followStatus) 
         doc: currentUser[0][0],
         subcollections:  [{collection:'following', doc:matchParamsId}]
       }, following );
-
-      if(followStatus){
-          followStatus = false;
-          console.log("turning to false!", followStatus);
-          return followStatus;
-      } else {
-          console.log("Turning to true", followStatus);
-          followStatus = true;
-      }
+        console.log("succesfully followed!");
     } catch (error) {
       console.log(error);
     }
 }  
+
+export const unfollow = (currentUser, visitedProfile) => async (dispatch, getState, {getFirestore}) => {
+            const firestore = getFirestore();
+            try {
+              console.log("is this happening");
+              await firestore.delete({
+                collection:'users',
+                doc:currentUser,
+                subcollections: [{collection:'following', doc:visitedProfile}]
+              })
+              } catch(error){
+                console.log(error);
+              }
+            }              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const checkFollow = (lookUpUser, currentUser) => async (dispatch, getState, {getFirestore}) => {
+            const firestore = firebase.firestore();
+            try {
+              console.log(lookUpUser,"this is the look up user");
+                const docRef = await firestore.collection('users').doc(lookUpUser).collection('followers').get();
+              
+                console.log(docRef, "this is the docref");
+                const docs = docRef.docs;
+                console.log(docs);
+                const indDocs = docs.filter(doc => {
+                 return doc.id === currentUser;
+                });
+
+                if(indDocs.length >0){
+                  console.log(indDocs, "your in there");
+                  return true;
+                } else {
+                  console.log("not a follower!");
+                  return false;
+                };
+
+
+            } catch (error) {
+              console.log(error);
+            }
+}

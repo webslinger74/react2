@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Item, Form, Button,Segment,Image, Header, Divider, Menu } from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form';
 import TextArea from '../utils/TextArea';
+import TextInput from '../utils/TextInput';
 
 const ProductDetailReview = ({handleSubmit, addProductComment, userId, prodId, prodState}) => (       
     <div>
@@ -15,7 +16,13 @@ const ProductDetailReview = ({handleSubmit, addProductComment, userId, prodId, p
     component={TextArea}
     type="text"
     placeholder="add review"
-  />
+    />
+  <Field
+  name="rating"
+  component={TextInput}
+  type="text"
+  placeholder="give rating out of 10"
+    />
   <Button fluid size="large" color="teal">
   Add Review
 </Button>

@@ -61,3 +61,11 @@
     grid-column: 1/1;
     margin-bottom: 20px;
 }
+
+.profileCards {
+    display:Grid !important;
+    grid-template-columns: 20% 20% 20% 20% 20% !important;
+    grid-column: 1/5 !important;
+    grid-column-gap: 0.5rem;
+    margin-bottom:30px;
+}

@@ -3,13 +3,14 @@ import { Grid, Item, Form, Button,Segment,Image, Header, Divider, Menu } from 's
 import { Field, reduxForm } from 'redux-form';
 import TextArea from '../utils/TextArea';
 import {connect} from 'react-redux';
-import { getProductComments, getPhotoFromStorage, removeComment } from '../features/products/addProductAction';
+import { getProductComments, getPhotoFromStorage, removeComment, calcProductRating } from '../features/products/addProductAction';
 import {Link} from 'react-router-dom';
 
 const actions = {
     getProductComments,
     getPhotoFromStorage,
-    removeComment
+    removeComment,
+    calcProductRating
 }
 const mapState = (state) => {
     return {
@@ -32,6 +33,11 @@ class ProductDetailReviewSummary extends Component {
 
         async componentDidMount() {
             try {
+
+                let prodrat = await this.props.calcProductRating(this.props.prodId);
+                    console.log(prodrat);
+
+
                 let indComments = [];
              indComments = await this.props.getProductComments(this.props.prodId);
              console.log(indComments, "comments for prod");
@@ -74,16 +80,16 @@ class ProductDetailReviewSummary extends Component {
 
      {this.state.KeyVals && this.state.KeyVals.map((comment) => {
                 const commentKey = comment[0];
-                console.log(commentKey, "fucking keys");
+                console.log(commentKey, "keys");
                 const commentVal = comment[1];
-                console.log(commentVal, "fucking vals");
+                console.log(commentVal, "vals");
 
                 return  <div key={commentKey}>
                 <Segment><div className="comments">
                            
                          <div><span><Link to={`/profile/${commentVal.userId}`}><Image style={{fontsize:'8px', maxHeight:'50px', maxWidth:'50px', borderRadius:'50%'}} src={commentVal.downloadableImg}/></Link><h2>{commentVal.displayName}</h2></span></div>
                          <div><h2>{commentVal.values.review}</h2></div>
-                         
+                         <div><h2>{commentVal.values.rating}/10</h2></div>
                          <Button disabled={commentVal.userId !== this.props.userId} onClick={() => removeComment(prodId, commentKey)}>x</Button>
                         
                        </div>
